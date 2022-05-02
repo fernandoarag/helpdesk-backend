@@ -12,7 +12,7 @@ import com.fernando.helpdesk.domain.enums.Perfil;
 import com.fernando.helpdesk.domain.enums.Prioridade;
 import com.fernando.helpdesk.domain.enums.Status;
 import com.fernando.helpdesk.repositories.ChamadoRepository;
-import com.fernando.helpdesk.repositories.ClienteReposiroty;
+import com.fernando.helpdesk.repositories.ClienteRepository;
 import com.fernando.helpdesk.repositories.TecnicoRepository;
 
 @Service
@@ -21,7 +21,7 @@ public class DBService {
 	@Autowired
 	private TecnicoRepository tecnicoRepository;
 	@Autowired
-	private ClienteReposiroty clienteRepository;
+	private ClienteRepository clienteRepository;
 	@Autowired
 	private ChamadoRepository chamadoRepository;
 
