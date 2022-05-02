@@ -15,14 +15,12 @@ public class ChamadoDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
 	private Integer prioridade;
-	private String descPrioridade;
 	private Integer status;
-	private String descStatus;
 	private String titulo;
 	private String observacoes;
 	private Integer tecnico;
-	private String nomeTecnico;
 	private Integer cliente;
+	private String nomeTecnico;
 	private String nomeCliente;
 
 	public ChamadoDTO() {
@@ -35,16 +33,13 @@ public class ChamadoDTO implements Serializable {
 		this.dataAbertura = obj.getDataAbertura();
 		this.dataFechamento = obj.getDataFechamento();
 		this.prioridade = obj.getPrioridade().getCodigo();
-		this.descPrioridade = obj.getPrioridade().getDescricao();
 		this.status = obj.getStatus().getCodigo();
-		this.setDescStatus(obj.getStatus().getDescricao());
 		this.titulo = obj.getTitulo();
 		this.observacoes = obj.getObservacoes();
 		this.tecnico = obj.getTecnico().getId();
-		this.nomeTecnico = obj.getTecnico().getNome();
 		this.cliente = obj.getCliente().getId();
+		this.nomeTecnico = obj.getTecnico().getNome();
 		this.nomeCliente = obj.getCliente().getNome();
-
 	}
 
 	public Integer getId() {
@@ -79,28 +74,12 @@ public class ChamadoDTO implements Serializable {
 		this.prioridade = prioridade;
 	}
 
-	public String getDescPrioridade() {
-		return descPrioridade;
-	}
-
-	public void setDescPrioridade(String descPrioridade) {
-		this.descPrioridade = descPrioridade;
-	}
-
 	public Integer getStatus() {
 		return status;
 	}
 
 	public void setStatus(Integer status) {
 		this.status = status;
-	}
-
-	public String getDescStatus() {
-		return descStatus;
-	}
-
-	public void setDescStatus(String descStatus) {
-		this.descStatus = descStatus;
 	}
 
 	public String getTitulo() {
@@ -127,20 +106,20 @@ public class ChamadoDTO implements Serializable {
 		this.tecnico = tecnico;
 	}
 
-	public String getNomeTecnico() {
-		return nomeTecnico;
-	}
-
-	public void setNomeTecnico(String nomeTecnico) {
-		this.nomeTecnico = nomeTecnico;
-	}
-
 	public Integer getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(Integer cliente) {
 		this.cliente = cliente;
+	}
+
+	public String getNomeTecnico() {
+		return nomeTecnico;
+	}
+
+	public void setNomeTecnico(String nomeTecnico) {
+		this.nomeTecnico = nomeTecnico;
 	}
 
 	public String getNomeCliente() {
