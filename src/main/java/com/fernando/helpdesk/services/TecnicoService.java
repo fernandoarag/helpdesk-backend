@@ -3,6 +3,8 @@ package com.fernando.helpdesk.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,14 @@ public class TecnicoService {
 		return tecnicoRepository.save(newObj);
 	}
 
+	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		objDTO.setId(id);
+		Tecnico oldObj = findById(id);
+		validaPorCpfEEmail(objDTO);
+		oldObj = new Tecnico(objDTO);
+		return tecnicoRepository.save(oldObj);
+	}
+
 	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
 		Optional<Pessoa> objPessoa = pessoaRepository.findByCpf(objDTO.getCpf());
 		if (objPessoa.isPresent() && objPessoa.get().getId() != objDTO.getId()) {
@@ -49,4 +59,5 @@ public class TecnicoService {
 			throw new DataIntegrityViolationException("Email já cadastrado no sistema!");
 		}
 	}
+
 }
