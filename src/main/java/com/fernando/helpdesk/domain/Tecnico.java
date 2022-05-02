@@ -2,11 +2,13 @@ package com.fernando.helpdesk.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fernando.helpdesk.domain.dtos.TecnicoDTO;
 import com.fernando.helpdesk.domain.enums.Perfil;
 
 @Entity
@@ -19,6 +21,18 @@ public class Tecnico extends Pessoa {
 
 	public Tecnico() {
 		super();
+		addPerfil(Perfil.CLIENTE);
+	}
+
+	public Tecnico(TecnicoDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.cpf = obj.getCpf();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.dataCriacao = obj.getDataCriacao();
 		addPerfil(Perfil.CLIENTE);
 	}
 
