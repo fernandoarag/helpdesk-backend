@@ -48,7 +48,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Security -->
+		<!-- Start - Security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -58,6 +58,7 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.7.0</version>
 		</dependency>
+		<!-- End - Security -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
