@@ -23,7 +23,7 @@ import com.fernando.helpdesk.security.JWTUtil;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecutiryConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final String[] PUBLIC_MATCHERS = { "/h2-console/**" };
 
@@ -32,7 +32,7 @@ public class SecutiryConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTUtil jwtUtil;
 	@Autowired
-	private UserDetailsService userDetailService;
+	private UserDetailsService userDetailsService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -42,14 +42,15 @@ public class SecutiryConfig extends WebSecurityConfigurerAdapter {
 
 		http.cors().and().csrf().disable();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
-		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailService));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();
+
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailService).passwordEncoder(BCryptPasswordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
 	@Bean
@@ -62,7 +63,7 @@ public class SecutiryConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public BCryptPasswordEncoder BCryptPasswordEncoder() {
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
