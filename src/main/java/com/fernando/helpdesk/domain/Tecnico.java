@@ -22,20 +22,22 @@ public class Tecnico extends Pessoa {
 	public Tecnico() {
 		super();
 		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.TECNICO);
 	}
 
 	public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
 		super(id, nome, cpf, email, senha);
 		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.TECNICO);
 	}
 
 	public Tecnico(TecnicoDTO obj) {
 		super();
 		this.id = obj.getId();
-		this.nome = obj.getNome();
+		this.nome = obj.getNome().trim();
 		this.cpf = obj.getCpf();
-		this.email = obj.getEmail();
-		this.senha = obj.getSenha();
+		this.email = obj.getEmail().trim();
+		this.senha = obj.getSenha().trim();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
 	}

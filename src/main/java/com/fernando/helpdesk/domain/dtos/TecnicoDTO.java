@@ -23,7 +23,7 @@ public class TecnicoDTO implements Serializable {
 	protected String nome;
 
 	@NotNull(message = "O campo CPF é requerido!")
-	@CPF
+	@CPF(message = "O CPF é inválido!")
 	protected String cpf;
 
 	@NotNull(message = "O campo EMAIL é requerido!")
@@ -40,18 +40,20 @@ public class TecnicoDTO implements Serializable {
 	public TecnicoDTO() {
 		super();
 		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.TECNICO);
 	}
 
 	public TecnicoDTO(Tecnico obj) {
 		super();
 		this.id = obj.getId();
-		this.nome = obj.getNome();
+		this.nome = obj.getNome().trim();
 		this.cpf = obj.getCpf();
-		this.email = obj.getEmail();
-		this.senha = obj.getSenha();
+		this.email = obj.getEmail().trim();
+		this.senha = obj.getSenha().trim();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
 		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.TECNICO);
 	}
 
 	public Integer getId() {
